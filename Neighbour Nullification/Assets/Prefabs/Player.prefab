@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114348493153997958}
   - component: {fileID: 114568412430803008}
   - component: {fileID: 114245900853783038}
+  - component: {fileID: 114781488682776250}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -104,7 +105,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1082866197037892}
   m_LocalRotation: {x: -0, y: -0, z: 4.6566126e-10, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -25.6, y: -0, z: -6.9}
   m_LocalScale: {x: 1, y: 1.0124751, z: 1.012475}
   m_Children:
   - {fileID: 4509871607256454}
@@ -119,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1602295910211984}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.49999997, z: 0.49999997}
   m_Children: []
   m_Father: {fileID: 4960417043929096}
@@ -287,7 +288,7 @@ MonoBehaviour:
   ObjectsClose: []
   rotateSpeed: 150
   throwSpeed: 50
-  targetParent: {fileID: 0}
+  targetParent: {fileID: 1103639315173460}
 --- !u!114 &114628903325261400
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -318,6 +319,23 @@ MonoBehaviour:
   playerMovement: {fileID: 114628903325261400}
   playerUI: {fileID: 0}
   state: 0
+--- !u!114 &114781488682776250
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1082866197037892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29c819d4395e1ef43ab238b5fd3f98d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shits:
+  - {fileID: 1157535642232792, guid: b56033b6731139e449ae4f9b11207c25, type: 2}
+  - {fileID: 1268985262795702, guid: 42a23cce53b1c4046b1eb8a4f0fad65f, type: 2}
+  - {fileID: 1062011127344846, guid: a5ba128bff302fb4185cb539854a1bf2, type: 2}
+  player: {fileID: 0}
+  spawnpos: {x: 0, y: 0, z: 0}
 --- !u!135 &135142457632631588
 SphereCollider:
   m_ObjectHideFlags: 1

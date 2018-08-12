@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    
-
     [Header("BasicStats")]
     public float speed;
     [Header("DeathTriggerAttributes")]
@@ -24,6 +22,7 @@ public class PlayerStats : MonoBehaviour
         list.Add(Hunger);
         list.Add(Tiredness);
     }
+   
     private void Start()
     {
         UpdateStats();

@@ -28,6 +28,17 @@ public class PlayerState : MonoBehaviour
             AddStatsTimer = AddStatsTreshold;
             player.Stats.UpdateStats();
             player.playerUI.UpdateSliders();
+
+            for (int i = 0; i < player.Stats.list.Count; i++)
+            {
+                if (player.Stats.list[i] >= 100)
+                {
+                    if (player.Number == 1)
+                        WhoWon.player2win = true;
+                    else if (player.Number == 2)
+                        WhoWon.player1win = true;
+                }
+            }
         }
 
 	}

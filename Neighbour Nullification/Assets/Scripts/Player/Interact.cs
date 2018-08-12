@@ -39,6 +39,7 @@ public class Interact : MonoBehaviour {
             HoldItemRigid.AddForce(dir * throwSpeed, ForceMode.Impulse);
             player.HeldItem.transform.parent = null;
             player.Target.SetActive(false);
+            SFXPlayer.instance.PlayAudioClip(1);
             player.state = Player.State.Default;
         }
     }
@@ -99,7 +100,10 @@ public class Interact : MonoBehaviour {
                     player.Stats.Tiredness = 0;
                 if (CheckForClosestObject().tag == "Toilet")
                     player.Stats.Bladder = 0;
+                if (CheckForClosestObject().tag == "Phone")
+                    player.spawnShit.SpawnRandomShit();
                 player.playerUI.UpdateSliders();
+                SFXPlayer.instance.PlayAudioClip(0);
                 return;
             }
             else if (player.state == Player.State.Holding && player.HeldItem != null)

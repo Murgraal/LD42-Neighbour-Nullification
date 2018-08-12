@@ -11,14 +11,16 @@ public class Player : MonoBehaviour {
     public PlayerStats Stats;
     public PlayerMovement playerMovement;
     public PlayerUI playerUI;
+    public SpawnShit spawnShit;
     public State state;
 
-    private void Awake()
+    private void Start()
     {
         Stats = GetComponent<PlayerStats>();
         playerMovement = GetComponent<PlayerMovement>();
         rigid = GetComponent<Rigidbody>();
         playerUI = GameObject.Find("Player" + Number + "UI").GetComponent<PlayerUI>();
+        spawnShit = GetComponent<SpawnShit>();
     }
 
     private void Update()
@@ -44,7 +46,6 @@ public class Player : MonoBehaviour {
 
     void FixedUpdate ()
     {
-        if (state != State.Throwing)
         playerMovement.MoveCharacter();
 	}
 }

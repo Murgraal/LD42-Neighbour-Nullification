@@ -9,6 +9,8 @@ TagManager:
   - Toilet
   - Tap
   - Fridge
+  - Phone
+  - road
   layers:
   - Default
   - TransparentFX
