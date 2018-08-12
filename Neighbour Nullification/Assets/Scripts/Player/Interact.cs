@@ -10,6 +10,7 @@ public class Interact : MonoBehaviour {
     string InteractKey;
     Rigidbody HoldItemRigid;
     Vector3 above;
+    public GameObject targetParent;
 
 	void Start ()
     {
@@ -19,19 +20,18 @@ public class Interact : MonoBehaviour {
 
     void PickupItem()
     {
-            if (CheckForClosestObject() == null || CheckForClosestObject().tag != "CanBePickedUp")
-            return;
             player.HeldItem = CheckForClosestObject();
             player.state = Player.State.Holding;
             HoldItemRigid = player.HeldItem.GetComponent<Rigidbody>();
             HoldItemRigid.isKinematic = true;
             player.HeldItem.transform.position = GetAbovePosition();
+            player.HeldItem.transform.eulerAngles = Vector3.zero;
             player.HeldItem.transform.parent = transform;
     }
 
     void ThrowItem()
     {
-        transform.Rotate(new Vector3(0, rotateSpeed * Time.deltaTime, 0));
+        targetParent.transform.Rotate(new Vector3(0, rotateSpeed * Time.deltaTime, 0));
         if (Input.GetButtonDown(InteractKey))
         {
             Vector3 dir = player.Target.transform.position - transform.position;
@@ -86,13 +86,23 @@ public class Interact : MonoBehaviour {
     void Update ()
     {
         if (Input.GetButtonDown(InteractKey))
-        {
-            if (player.state == Player.State.Default)
+        { 
+            if (player.state == Player.State.Default && CheckForClosestObject() != null)
             {
+                if (CheckForClosestObject().tag == "CanBePickedUp")
                 PickupItem();
+                if (CheckForClosestObject().tag == "Tap")
+                    player.Stats.Thirst = 0;
+                if (CheckForClosestObject().tag == "Fridge")
+                    player.Stats.Hunger = 0;
+                if (CheckForClosestObject().tag == "Bed")
+                    player.Stats.Tiredness = 0;
+                if (CheckForClosestObject().tag == "Toilet")
+                    player.Stats.Bladder = 0;
+                player.playerUI.UpdateSliders();
                 return;
             }
-            else if (player.state == Player.State.Holding)
+            else if (player.state == Player.State.Holding && player.HeldItem != null)
             {
                 player.Target.SetActive(true);
                 player.state = Player.State.Throwing;

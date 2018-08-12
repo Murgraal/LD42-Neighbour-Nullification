@@ -28,21 +28,23 @@ public class Player : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("CanBePickedUp"))
+       if (collision.gameObject.CompareTag("CanBePickedUp"))
         {
             float x = collision.gameObject.GetComponent<Rigidbody>().velocity.x;
             float y = collision.gameObject.GetComponent<Rigidbody>().velocity.y;
-            if (x > 1 || y > 1  || y < -1 || x < - 1)
+            if (x > 3 || y > 3  || x < -3 || y < - 3)
             {
-                rigid.AddForce(collision.transform.position - transform.position * Stats.speed * 30);
+                print("gothere");
+                rigid.AddForce((transform.position - collision.gameObject.transform.position).normalized * Stats.speed * 100);
             }
             
-        }
+        } 
     }
 
 
     void FixedUpdate ()
     {
+        if (state != State.Throwing)
         playerMovement.MoveCharacter();
 	}
 }
